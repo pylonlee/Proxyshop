@@ -107,6 +107,7 @@ def get_card_data(
         # Was the result correct?
         if isinstance(card, dict):
             card['name_normalized'] = name_normalized
+            
             return process_scryfall_data(card)
         elif not cfg.test_mode:
             # Language couldn't be found

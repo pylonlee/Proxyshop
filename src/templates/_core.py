@@ -184,8 +184,9 @@ class BaseTemplate:
         if not cfg.overwrite_duplicate:
             # Generate a name that doesn't exist yet
             return sanitize_filename(
-                get_unique_filename(osp.join(con.cwd, "out"), self.layout.name_raw, f'.{cfg.output_filetype}', suffix))
-        return sanitize_filename(f"{self.layout.name_raw}{f' ({suffix})' if suffix else ''}")
+                get_unique_filename(osp.join(con.cwd, "out"), self.layout.name_raw, f'.{cfg.output_filetype}', suffix)
+            )
+        return sanitize_filename(f"{self.layout.name_raw}{f' [{self.layout.display_name}] '}{f' ({suffix})' if suffix else ''}")
 
     """
     BOOL
@@ -657,9 +658,11 @@ class BaseTemplate:
             return
 
         # Fill alternate language and set info
-        if self.layout.lang != "en":
-            psd.replace_text(set_layer, "EN", self.layout.lang.upper())
-        set_layer.textItem.contents = self.layout.set + set_layer.textItem.contents
+        if self.layout.lang != "EN":
+            psd.replace_text(set_layer, "EN", "CS")
+        #set_layer.textItem.contents = self.layout.set + set_layer.textItem.contents
+        # Add by Vertigor
+        set_layer.textItem.contents = 'CUSTOM PROXY'+set_layer.textItem.contents + ' • NOT FOR SALE'
 
     def collector_info_authentic(self) -> None:
         """Called to generate realistic collector info."""

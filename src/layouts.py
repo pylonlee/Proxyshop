@@ -652,7 +652,7 @@ class PlaneswalkerLayout(NormalLayout):
             index = en_lines[i].find(": ")
             abilities.append({
                 # Activated ability
-                'text': line[index + 1:].lstrip(),
+                'text': line[index + 1:],
                 'icon': en_lines[i][0],
                 'cost': en_lines[i][0:index]
             } if 5 > index > 0 else {

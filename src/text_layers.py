@@ -4,6 +4,7 @@ TEXT LAYER MODULE
 # Standard Library Imports
 from functools import cached_property
 from typing import Optional, Union, Callable
+import re
 
 # Third Party Imports
 from photoshop.api import (
@@ -40,12 +41,16 @@ sID = app.stringIDToTypeID
 cID = app.charIDToTypeID
 NO_DIALOG = DialogModes.DisplayNoDialogs
 
+def check_contains_chinese(check_str):
+     for ch in check_str:
+        if re.search(u'[\u4e00-\u9fff]', ch):
+            return True
+
+     return False
 
 """
 Text Layer Classes
 """
-
-
 class TextField:
     """
     A generic TextField, which allows you to set a text layer's contents and text color.
@@ -88,11 +93,28 @@ class TextField:
     """
     METHODS
     """
+    
 
     def execute(self):
         """
         Executes all text actions.
         """
+        #Add By vertigor base on characters replace Chinese fonts        
+        try:
+         if check_contains_chinese(self.contents):                    
+          match self.layer.name:
+               case 'Card Name'|'Card Name Shift':
+                 self.layer.textItem.font='AaBanruokaishujf'
+                 self.layer.textItem.size=10                                
+               case 'Typeline'|'Typeline Shift':
+                 self.layer.textItem.font='KaiTi'
+                 self.layer.textItem.size=8.5
+               case layername if 'Text' in layername: 
+                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.size=8                           
+        except Exception as e:
+         print(f"An error occurred: {e}")
+        #fonts replace end
         self.layer.textItem.contents = self.input
         self.layer.textItem.color = self.color
 
@@ -292,6 +314,7 @@ class FormattedTextField (TextField):
         main_descriptor.putString(sID("textKey"), self.input)
         main_range.putInteger(idFrom, 0)
         main_range.putInteger(idTo, len(self.input))
+
         main_style.putString(fontPostScriptName, con.font_rules_text)  # MPlantin default
         main_style.putString(fontName, con.font_rules_text)  # MPlantin default
         main_style.putUnitDouble(size, pointsUnit, self.font_size)
@@ -300,6 +323,8 @@ class FormattedTextField (TextField):
         main_style.putUnitDouble(leading, pointsUnit, self.font_size)
         main_range.putObject(textStyle, textStyle, main_style)
         main_list.putObject(styleRange, main_range)
+        # Add by Vertigor
+        
 
         # Bold the contents if necessary
         if self.bold_rules_text and self.flavor_index != 0:
@@ -308,8 +333,20 @@ class FormattedTextField (TextField):
             contents_index = len(self.input) - 1 if self.flavor_index < 0 else self.flavor_index - 1
             bold_range.putInteger(idFrom, 0)  # bold start index
             bold_range.putInteger(idTo, contents_index)  # bold end index
-            bold_style.putString(fontPostScriptName, con.font_rules_text_bold)
-            bold_style.putString(fontName, con.font_rules_text_bold)
+            try:
+             if check_contains_chinese(self.contents):
+               bold_style.putString(fontPostScriptName, 'KaiTi')
+               if self.font_size > 7.5:
+                bold_style.putUnitDouble(size, pointsUnit, 8)
+               else:
+                bold_style.putUnitDouble(size, pointsUnit, self.font_size)               
+             else :          
+               bold_style.putString(fontPostScriptName, con.font_rules_text_italic)
+               bold_style.putUnitDouble(size, pointsUnit, self.font_size)
+            except Exception as e:
+             print(f"An error occurred: {e}")
+            #bold_style.putString(fontPostScriptName, con.font_rules_text_bold)
+            #bold_style.putString(fontName, con.font_rules_text_bold)
             bold_style.putUnitDouble(size, pointsUnit, self.font_size)
             apply_color(bold_style, self.color)
             bold_style.putBoolean(autoLeading, False)
@@ -323,8 +360,21 @@ class FormattedTextField (TextField):
             italic_style = ActionDescriptor()
             italic_range.putInteger(idFrom, i['start_index'])  # italics start index
             italic_range.putInteger(idTo, i['end_index'])  # italics end index
-            italic_style.putString(fontPostScriptName, con.font_rules_text_italic)
-            italic_style.putString(fontName, con.font_rules_text_italic)
+            # Add by Vertigor
+            try:
+             if check_contains_chinese(self.contents):       
+               italic_style.putString(fontPostScriptName, 'KaiTi')
+               if self.font_size > 7.5:
+                italic_style.putUnitDouble(size, pointsUnit, 8)
+               else:
+                italic_style.putUnitDouble(size, pointsUnit, self.font_size)               
+             else :          
+               italic_style.putString(fontPostScriptName, con.font_rules_text_italic)
+               italic_style.putUnitDouble(size, pointsUnit, self.font_size)
+            except Exception as e:
+             print(f"An error occurred: {e}")
+            #italic_style.putString(fontPostScriptName, con.font_rules_text_italic)
+            #italic_style.putString(fontName, con.font_rules_text_italic)
             italic_style.putUnitDouble(size, pointsUnit, self.font_size)
             apply_color(italic_style, self.color)
             italic_style.putBoolean(autoLeading, False)

@@ -84,8 +84,6 @@ templates = get_templates()
 """
 BASE CONTAINERS
 """
-
-
 class ProxyshopPanels(BoxLayout):
     """Container for overall app."""
 
