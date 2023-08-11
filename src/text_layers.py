@@ -105,13 +105,22 @@ class TextField:
           match self.layer.name:
                case 'Card Name'|'Card Name Shift':
                  self.layer.textItem.font='AaBanruokaishujf'
-                 self.layer.textItem.size=10                                
+                 self.layer.textItem.size=10
+               case 'Card Name - Adventure':
+                 self.layer.textItem.font='AaBanruokaishujf'
+                 self.layer.textItem.size=8
                case 'Typeline'|'Typeline Shift':
                  self.layer.textItem.font='KaiTi'
                  self.layer.textItem.size=8.5
+               case 'Typeline - Adventure':
+                 self.layer.textItem.font='KaiTi'
+                 self.layer.textItem.size=6.5
+               case 'Rules Text - Adventure':
+                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.size=6.5
                case layername if 'Text' in layername: 
                  self.layer.textItem.font='FZZXHJW--GB1-0'
-                 self.layer.textItem.size=8                           
+                 self.layer.textItem.size=8
         except Exception as e:
          print(f"An error occurred: {e}")
         #fonts replace end
