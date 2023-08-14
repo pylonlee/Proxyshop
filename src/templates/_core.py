@@ -186,7 +186,7 @@ class BaseTemplate:
             return sanitize_filename(
                 get_unique_filename(osp.join(con.cwd, "out"), self.layout.name_raw, f'.{cfg.output_filetype}', suffix)
             )
-        return sanitize_filename(f"{self.layout.name_raw}{f' [{self.layout.display_name}] '}{f' ({suffix})' if suffix else ''}")
+        return sanitize_filename(f"{self.layout.name_raw}{f' [{self.layout.display_name}]'}{f' ({suffix})' if suffix else ''}")
 
     """
     BOOL

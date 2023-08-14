@@ -111,10 +111,11 @@ class TextField:
                  self.layer.textItem.size=8
                case 'Typeline'|'Typeline Shift':
                  self.layer.textItem.font='KaiTi'
+                 self.contents=self.contents.replace(" ", "")
                  self.layer.textItem.size=8.5
                case 'Typeline - Adventure':
                  self.layer.textItem.font='KaiTi'
-                 self.layer.textItem.size=6.5
+                 self.layer.textItem.size=7.5
                case 'Rules Text - Adventure':
                  self.layer.textItem.font='FZZXHJW--GB1-0'
                  self.layer.textItem.size=6.5
