@@ -122,6 +122,9 @@ class TextField:
                case layername if 'Text' in layername: 
                  self.layer.textItem.font='FZZXHJW--GB1-0'
                  self.layer.textItem.size=8
+                 if len(self.contents)>12:
+                    self.contents_centered=False
+                    self.layer.textItem.justification=Justification.Left
         except Exception as e:
          print(f"An error occurred: {e}")
         #fonts replace end
