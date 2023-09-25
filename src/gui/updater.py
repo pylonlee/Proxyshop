@@ -18,14 +18,14 @@ from src.constants import con
 from src.core import check_for_updates, update_template
 from src.gui.utils import GUI
 from src.utils.strings import msg_success, msg_error
-from src.utils.types_templates import TemplateUpdate
+from src.types.templates import TemplateUpdate
 
 
 class UpdatePopup(Popup):
     """
     Popup modal for updating templates.
     """
-    Builder.load_file(os.path.join(con.cwd, "src/kv/updater.kv"))
+    Builder.load_file(os.path.join(con.path_kv, "updater.kv"))
     updates: dict[str, list[TemplateUpdate]] = {}
     loading = True
     categories = {}

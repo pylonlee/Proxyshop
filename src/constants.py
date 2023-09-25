@@ -3,17 +3,33 @@ GLOBAL CONSTANTS MODULE
 """
 # Standard Library Imports
 import os
+import sys
 import json
 from os import path as osp
+from pathlib import Path
 from threading import Lock
 from typing import Optional
 
 # Third Party Imports
 import yaml
 
+# Establish global root, based on Python or frozen EXE environment
+__PATH_CWD__ = os.getcwd()
+__PATH_ROOT__ = None
+if getattr(sys, 'frozen', False):
+    __PATH_ROOT__ = os.path.dirname(sys.executable)
+elif __file__:
+    __PATH_ROOT__ = os.path.dirname(Path(__file__).parent)
+__PATH_ROOT__ = __PATH_ROOT__ or __PATH_CWD__
+
+# Switch to root directory if current directory differs
+if __PATH_CWD__ != __PATH_ROOT__:
+    os.chdir(__PATH_ROOT__)
+
 # Local Imports
 from src.enums.mtg import mana_color_map
 from src.enums.layers import LAYERS
+from src.utils.env import PS_VERSION
 from src.utils.objects import Singleton, PhotoshopHandler
 
 
@@ -24,7 +40,7 @@ class Constants:
     Can be modified within a template class to adjust rendering behavior.
     """
     __metaclass__ = Singleton
-    app = PhotoshopHandler()
+    app = PhotoshopHandler(version=PS_VERSION)
 
     def __init__(self):
         # Initialize the values
@@ -35,15 +51,17 @@ class Constants:
         """Loads default values. Called at launch and between renders to remove any changes made by templates."""
 
         # Consistent paths used by the app
-        self.cwd = os.getcwd()
+        self.cwd = __PATH_ROOT__
         self.path_src = osp.join(self.cwd, 'src')
         self.path_logs = osp.join(self.cwd, 'logs')
         self.path_fonts = osp.join(self.cwd, 'fonts')
         self.path_img = osp.join(self.path_src, 'img')
         self.path_data = osp.join(self.path_src, 'data')
+        self.path_kv = osp.join(self.path_data, 'kv')
         self.path_plugins = osp.join(self.cwd, 'plugins')
         self.path_tests = osp.join(self.path_src, 'tests')
         self.path_configs = osp.join(self.path_src, 'configs')
+        self.path_templates = osp.join(self.cwd, 'templates')
         self.path_data_sets = osp.join(self.path_data, 'sets')
         self.path_config_json_base = osp.join(self.path_data, 'base_settings.json')
         self.path_config_json_app = osp.join(self.path_data, 'app_settings.json')
