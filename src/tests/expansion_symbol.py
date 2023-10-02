@@ -18,6 +18,8 @@ import requests
 
 # Local Imports
 from src.constants import con
+from src.utils.objects import PhotoshopHandler
+
 con.headless = True
 from src import helpers as psd
 from src.settings import cfg
@@ -25,10 +27,10 @@ from src.enums.photoshop import Dimensions
 from src.enums.layers import LAYERS
 
 # Generate rarity folders if they don't exist
-Path(os.path.join(con.path_tests, "symbols/common")).mkdir(mode=511, parents=True, exist_ok=True)
-Path(os.path.join(con.path_tests, "symbols/uncommon")).mkdir(mode=511, parents=True, exist_ok=True)
-Path(os.path.join(con.path_tests, "symbols/rare")).mkdir(mode=511, parents=True, exist_ok=True)
-Path(os.path.join(con.path_tests, "symbols/mythic")).mkdir(mode=511, parents=True, exist_ok=True)
+Path(os.path.join(con.path_tests, "symbols/common")).mkdir(mode=711, parents=True, exist_ok=True)
+Path(os.path.join(con.path_tests, "symbols/uncommon")).mkdir(mode=711, parents=True, exist_ok=True)
+Path(os.path.join(con.path_tests, "symbols/rare")).mkdir(mode=711, parents=True, exist_ok=True)
+Path(os.path.join(con.path_tests, "symbols/mythic")).mkdir(mode=711, parents=True, exist_ok=True)
 
 """
 TEST CLASSES
@@ -75,8 +77,8 @@ class TestTemplate:
         self.expansion_symbol()
 
     @cached_property
-    def app(self):
-        return ps.Application()
+    def app(self) -> PhotoshopHandler:
+        return con.app
 
     @cached_property
     def text_group(self):
@@ -277,8 +279,7 @@ RUN TEST HERE
 """
 
 """# Open the document
-app = ps.Application()
-app.open(os.path.join(con.path_tests, 'expansion_symbol_test.psd'))
+con.app.open(os.path.join(con.path_tests, 'expansion_symbol_test.psd'))
 
 # TEST ONE SYMBOL
 test_target_symbol('MOC', rarities=['common', 'uncommon', 'rare', 'mythic'])

@@ -5,6 +5,8 @@ PROXYSHOP GUI LAUNCHER
 import sys
 import json
 import datetime
+from contextlib import suppress
+
 import win32clipboard
 import os.path as osp
 from io import BytesIO
@@ -17,9 +19,10 @@ from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count
 
 # Third-party Imports
+import requests
 from PIL import Image as PImage
-from photoshop import api as ps
 from photoshop.api._document import Document
+from photoshop.api import SaveOptions, DialogModes
 
 # Environment variables
 environ["KIVY_LOG_MODE"] = "PYTHON"
@@ -50,12 +53,10 @@ from src.gui.utils import HoverBehavior, HoverButton, GUI, DynamicTabPanel, Dyna
 from src.gui.settings import SettingsPopup
 from src.constants import con
 from src.core import (
-    card_types,
     get_templates,
     TemplateDetails,
     get_my_templates,
-    get_template_class,
-    check_app_version
+    get_template_class
 )
 from src.settings import cfg
 from src.console import console
@@ -158,6 +159,10 @@ class ProxyshopApp(App):
         """Padding for the main app container."""
         return dp(10)
 
+    @property
+    def console(self) -> type[console]:
+        return console
+
     """
     RENDERING PROPERTIES
     """
@@ -224,7 +229,6 @@ class ProxyshopApp(App):
             result = func(self, *args)
             self.reset(enable_buttons=True, close_document=True)
             return result
-
         return wrapper
 
     """
@@ -308,16 +312,15 @@ class ProxyshopApp(App):
             console.clear()
 
     @staticmethod
-    def select_art(app: ps.Application) -> Optional[Union[str, list]]:
+    def select_art() -> Optional[Union[str, list]]:
         """
         Open file select dialog in Photoshop, return the file.
-        @param app: Photoshop Application object.
         @return: File object.
         """
         while True:
             try:
                 # Open a file select dialog in Photoshop
-                if files := app.openDialog():
+                if files := con.app.openDialog():
                     return files
                 # No files selected
                 return
@@ -329,15 +332,17 @@ class ProxyshopApp(App):
                 ):
                     # Cancel the operation
                     return
+                # Refresh Photoshop, try again
+                con.app.refresh_app()
 
     def close_document(self) -> None:
         """Close Photoshop document if open."""
         try:
             # Close and set null
             if self.docref and isinstance(self.docref, Document):
-                con.app.displayDialogs = ps.DialogModes.DisplayNoDialogs
-                self.docref.close(ps.SaveOptions.DoNotSaveChanges)
-                con.app.displayDialogs = ps.DialogModes.DisplayErrorDialogs
+                con.app.displayDialogs = DialogModes.DisplayNoDialogs
+                self.docref.close(SaveOptions.DoNotSaveChanges)
+                con.app.displayDialogs = DialogModes.DisplayErrorDialogs
                 self.current_render = None
         except Exception as e:
             # Document wasn't available
@@ -352,9 +357,7 @@ class ProxyshopApp(App):
     @render_process_wrapper
     def render_target(self) -> None:
         """Open the file select dialog in Photoshop and pass the selected arts to render_all."""
-        self.disable_buttons()
-        app = ps.Application()
-        if not (files := self.select_art(app)):
+        if not (files := self.select_art()):
             return
         return self.render_all(files)
 
@@ -383,7 +386,7 @@ class ProxyshopApp(App):
         layouts: dict = {}
         for c in cards:
             layouts.setdefault(
-                'failed' if isinstance(c, str) else c.card_class, []
+                'failed' if isinstance(c, str) else temps[c.card_class]['template_path'], []
             ).append(c)
 
         # Did any cards fail to find?
@@ -403,13 +406,11 @@ class ProxyshopApp(App):
         console.update()
 
         # Render each card type as a different batch
-        for card_type, cards in layouts.items():
-            # The template we'll use for this type
-            template = temps[card_type].copy()
-            template['loaded_class'] = get_template_class(template)
-            for card in cards:
-                # Start render thread
-                if not self.start_render(template, card):
+        for _, cards in layouts.items():
+            for c in cards:
+                # Initialize the template module if needed, start a render thread
+                temps[c.card_class].setdefault('loaded_class', get_template_class(temps[c.card_class]))
+                if not self.start_render(temps[c.card_class], c):
                     return
                 # Card complete
                 self.reset()
@@ -424,8 +425,7 @@ class ProxyshopApp(App):
         @param scryfall: Dict of scryfall data.
         """
         # Open file in PS
-        app = ps.Application()
-        if not (file_name := self.select_art(app)):
+        if not (file_name := self.select_art()):
             return
 
         # Instantiate layout object and get template class
@@ -480,7 +480,7 @@ class ProxyshopApp(App):
                         console.update(layout)
                         return
                     # Grab the template class and start the render thread
-                    layout.filename = osp.join(con.cwd, "src/img/test.png")
+                    layout.filename = osp.join(con.path_img, "test.jpg")
                     template['loaded_class'] = get_template_class(template)
                     if not self.start_render(template, layout):
                         failures.append(card[0])
@@ -625,7 +625,7 @@ class ProxyshopApp(App):
         """Take a screenshot of the Kivy window."""
         window: Window = self.root_window
         screenshot_path = osp.join(con.cwd, "out/screenshots")
-        Path(screenshot_path).mkdir(mode=511, parents=True, exist_ok=True)
+        Path(screenshot_path).mkdir(mode=711, parents=True, exist_ok=True)
         img_path = osp.join(screenshot_path, datetime.datetime.now().strftime("%m-%d-%Y, %H%M%S.jpg"))
         img_path = window.screenshot(name=img_path)
 
@@ -662,7 +662,7 @@ class ProxyshopApp(App):
         # Check if using latest version
         console.update(
             f"Proxyshop Version ... {msg_success('Proxyshop is up to date!')}" if (
-                check_app_version()
+                self.check_app_version()
             ) else f"Proxyshop Version ... {msg_info('New release available!')}"
         )
 
@@ -692,7 +692,7 @@ class ProxyshopApp(App):
         console.update(f"Photoshop ... {msg_success('Connection established!')}")
 
         # Check for missing or outdated fonts
-        missing, outdated = check_app_fonts(con.path_fonts)
+        missing, outdated = check_app_fonts([con.path_fonts])
 
         # Font test passed
         if not missing and not outdated:
@@ -714,6 +714,25 @@ class ProxyshopApp(App):
         if self.cancel_render and isinstance(self.cancel_render, Event):
             self.cancel_render.set()
 
+    """
+    APP UPDATES
+    """
+
+    @staticmethod
+    def check_app_version() -> bool:
+        """
+        Check if app is the latest version.
+        @return: Return True if up to date, otherwise False.
+        """
+        with suppress(requests.RequestException, json.JSONDecodeError):
+            current = f"v{ENV_VERSION}"
+            response = requests.get(
+                "https://api.github.com/repos/MrTeferi/Proxyshop/releases/latest",
+                timeout=(3, 3))
+            latest = response.json().get("tag_name", current)
+            return bool(current == latest)
+        return True
+
 
 """
 TEMPLATE MODULES
@@ -729,7 +748,7 @@ class TemplateModule(DynamicTabPanel):
         temp_tabs = []
 
         # Add a list of buttons inside a scroll box to each tab
-        for named_type, layout in card_types.items():
+        for named_type, layout in con.card_type_map.items():
 
             # Get the list of templates for this type
             temps = templates[layout[0]]
@@ -915,10 +934,10 @@ if __name__ == '__main__':
         resource_add_path(osp.join(sys._MEIPASS))
 
     # Ensure mandatory folders are created
-    Path(osp.join(con.cwd, "out")).mkdir(mode=511, parents=True, exist_ok=True)
-    Path(osp.join(con.cwd, "logs")).mkdir(mode=511, parents=True, exist_ok=True)
-    Path(osp.join(con.cwd, "templates")).mkdir(mode=511, parents=True, exist_ok=True)
-    Path(osp.join(con.cwd, "src/data/sets")).mkdir(mode=511, parents=True, exist_ok=True)
+    Path(osp.join(con.cwd, "out")).mkdir(mode=711, parents=True, exist_ok=True)
+    Path(osp.join(con.cwd, "logs")).mkdir(mode=711, parents=True, exist_ok=True)
+    Path(osp.join(con.cwd, "templates")).mkdir(mode=711, parents=True, exist_ok=True)
+    Path(osp.join(con.cwd, "src/data/sets")).mkdir(mode=711, parents=True, exist_ok=True)
 
     # Launch the app
     Factory.register('HoverBehavior', HoverBehavior)

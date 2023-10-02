@@ -4,6 +4,7 @@
 # Standard Library Imports
 import os.path as osp
 from functools import cached_property
+from pathlib import Path
 from threading import Event
 from typing import Optional, Callable, Any, Union, Iterable
 
@@ -176,6 +177,15 @@ class BaseTemplate:
             OutputFiletype.PSD: psd.save_document_psd,
             OutputFiletype.JPG: psd.save_document_jpeg
         }
+
+    @cached_property
+    def output_directory(self) -> str:
+        """Directory to save the rendered image."""
+        if cfg.test_mode:
+            class_dir = f'out/{self.__class__.__name__}'
+            Path(osp.join(con.cwd, class_dir)).mkdir(mode=711, parents=True, exist_ok=True)
+            return class_dir
+        return 'out'
 
     @cached_property
     def output_file_name(self) -> str:
@@ -597,7 +607,7 @@ class BaseTemplate:
         """
         # Check for fullart test image
         if cfg.test_mode and self.is_fullart:
-            self.layout.filename = osp.join(con.path_img, "test-fa.png")
+            self.layout.filename = osp.join(con.path_img, "test-fa.jpg")
 
         # Paste the file into the art
         self.active_layer = self.art_layer
@@ -1173,7 +1183,7 @@ class BaseTemplate:
         check = self.run_tasks(
             [self.save_modes.get(cfg.output_filetype, psd.save_document_jpeg)],
             "Error during file save process!",
-            args=(self.output_file_name,)
+            args=(self.output_file_name, self.output_directory)
         )
         if not all(check):
             return check[1]
