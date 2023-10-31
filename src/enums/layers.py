@@ -2,20 +2,6 @@
 LAYER NAME ENUMS
 """
 from src.utils.strings import StrEnum
-from dataclasses import dataclass
-
-
-@dataclass
-class COLORS:
-    W = [246, 246, 239]
-    U = ""
-    B = ""
-    R = ""
-    G = ""
-    Artifact = ""
-    Colorless = ""
-    Gold = ""
-    Land = ""
 
 
 class LAYERS (StrEnum):
@@ -126,13 +112,10 @@ class LAYERS (StrEnum):
     TEXT_AND_ICONS = "Text and Icons"
     NAME = "Card Name"
     NAME_SHIFT = "Card Name Shift"
-    NAME_ADVENTURE = "Card Name - Adventure"
     NICKNAME = "Nickname"
     TYPE_LINE = "Typeline"
     TYPE_LINE_SHIFT = "Typeline Shift"
-    TYPE_LINE_ADVENTURE = "Typeline - Adventure"
     MANA_COST = "Mana Cost"
-    MANA_COST_ADVENTURE = "Mana Cost - Adventure"
     EXPANSION_SYMBOL = "Expansion Symbol"
     COLOR_INDICATOR = "Color Indicator"
     POWER_TOUGHNESS = "Power / Toughness"
@@ -143,7 +126,6 @@ class LAYERS (StrEnum):
     RULES_TEXT_NONCREATURE_FLIP = "Rules Text - Noncreature Flip"
     RULES_TEXT_CREATURE = "Rules Text - Creature"
     RULES_TEXT_CREATURE_FLIP = "Rules Text - Creature Flip"
-    RULES_TEXT_ADVENTURE = "Rules Text - Adventure"
     DEFENSE = "Defense"
     MUTATE = "Mutate"
     DIVIDER = "Divider"
@@ -168,7 +150,6 @@ class LAYERS (StrEnum):
     # Text References
     TEXTBOX_REFERENCE = "Textbox Reference"
     TEXTBOX_REFERENCE_LAND = "Textbox Reference Land"
-    TEXTBOX_REFERENCE_ADVENTURE = "Textbox Reference - Adventure"
     MUTATE_REFERENCE = "Mutate Reference"
     PT_REFERENCE = "PT Adjustment Reference"
     PT_TOP_REFERENCE = "PT Top Reference"
@@ -245,3 +226,17 @@ class LAYERS (StrEnum):
     EXTENDED = "Extended"
     CLASSIC = "Classic"
     FULLART = "Fullart"
+
+    # Adventure
+    ADVENTURE = "Adventure"
+    STORYBOOK = "Storybook"
+    ADVENTURE_NAME = "Adventure Name"
+    ADVENTURE_TYPELINE = "Adventure Typeline"
+    ADVENTURE_TYPELINE_ACCENT = "Adventure Typeline Accent"
+    NAME_ADVENTURE = "Card Name - Adventure"
+    TYPE_LINE_ADVENTURE = "Typeline - Adventure"
+    MANA_COST_ADVENTURE = "Mana Cost - Adventure"
+    RULES_TEXT_ADVENTURE = "Rules Text - Adventure"
+    TEXTBOX_REFERENCE_ADVENTURE = "Textbox Reference - Adventure"
+    DIVIDER_ADVENTURE = "Divider - Adventure"
+    WINGS = "Wings"
