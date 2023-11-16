@@ -1,0 +1,1637 @@
+# ------------------------------
+# * Base Definitions
+# ------------------------------
+MTG: 
+MTGO: 
+PMODO: MTGO
+MTGA: 
+PARL2: 
+PMTG1: 
+PMTG2: 
+BCORE: 
+
+# ------------------------------
+# * Gift Pack
+# ------------------------------
+G17: SLD
+G18: M19
+
+# ------------------------------
+# * Oversized Promos
+# ------------------------------
+O90P: SLD
+OLEP: SLD
+
+# ------------------------------
+# * Love Your LGS
+# ------------------------------
+PLG20: SLD
+PLG21: SLD
+PLG22: SLD
+
+# ------------------------------
+# * Resale Promos
+# ------------------------------
+PRES: SLD
+
+# ------------------------------
+# * Standard Showdown
+# ------------------------------
+PSS1: BFZ
+PSS2: SLD
+PSS3: SLD
+
+# ------------------------------
+# * Summer Vacation Promos
+# ------------------------------
+PSVC: SLD
+
+# ------------------------------
+# * Pioneer Challenger Decks
+# ------------------------------
+Q06: SLD
+Q07: SLD
+
+# ------------------------------
+# * 30th Anniversary
+# ------------------------------
+30A:
+- char: 
+  fill: white
+  common-fill: white
+  stroke:
+    color: white
+    weight: 4
+  common-stroke:
+    weight: 4
+P30A: SLD
+P30H: SLD
+
+# ------------------------------
+# * Clash Pack
+# ------------------------------
+CP1: SLD
+CP2: SLD
+CP3: SLD
+
+# -----------------------------
+# * Duels of the Planeswalkers
+# -----------------------------
+DPA:
+  char: 
+  fill: rarity
+  common-fill: white
+PDP10: DPA
+PDP12: DPA
+PDP13: M13
+PDP14: M14
+PDP15: M15
+PXBOX: 
+PDTP: PXBOX
+
+# -----------------------------
+# * IDW Comics
+# -----------------------------
+IDW: 
+PIDW: IDW
+PI13: IDW
+PI14: IDW
+
+# ------------------------------
+# * Magic Encyclopedia (Salvat)
+# ------------------------------
+PSAL: 
+PSALVAT05: PSAL
+PS11: 
+PSALVAT11: PS11
+PHUK: PSAL
+
+# ------------------------------
+# * Magic Premiere Shop
+# ------------------------------
+PMPS: 
+PMPS06: PMTG2
+PMPS07: PMPS
+PMPS08: PMPS
+PMPS09: PMPS
+PMPS10: PMPS
+PMPS11: PMPS
+
+# ------------------------------
+# * Introductory Two-Player Set
+# ------------------------------
+X2PS: 
+ITP: X2PS
+
+# ------------------------------
+# * Book Promos / HarperPrism
+# ------------------------------
+PBOOK: 
+PHPR: PBOOK
+
+# ------------------------------
+# * Sega Dreamcast Cards
+# ------------------------------
+PSEGA: 
+PSDG: PSEGA
+
+# ------------------------------
+# * Collectors' Edition
+# ------------------------------
+XCLE: 
+CED: XCLE
+XICE: 
+CEI: XICE
+
+# ------------------------------
+# * Vanguard Series
+# ------------------------------
+VAN: 
+PVAN: VAN
+
+# ------------------------------
+# * Conspiracy
+# ------------------------------
+CNS:
+- char: ""
+  fill: black
+  common-fill: white
+CN2:
+- char: ""
+  fill: black
+  common-fill: white
+
+# ------------------------------
+# * Astral Cards
+# ------------------------------
+PAST: 
+PMIC: PAST
+
+# ------------------------------
+# * Box Sets
+# ------------------------------
+
+# Multiversal
+MGB: VIS
+
+# Battle Royal
+BRB: 
+
+# Beatdown
+BTD: ""
+
+# ------------------------------
+# * Prize Pack / Treasure chest
+# ------------------------------
+PZ1: MTG
+PZ2: 
+
+# ------------------------------
+# * Renaissance
+# ------------------------------
+XREN: 
+REN: XREN
+XRIN: 
+RIN: XRIN
+
+# ------------------------------
+# * Media Inserts
+# ------------------------------
+# TODO: Different symbols for different years
+PMEI: SLD
+
+# ------------------------------
+# * Land Programs (Euro / APAC)
+# ------------------------------
+PAPAC: 
+PALP: PAPAC
+PEURO: 
+PELP: PEURO
+
+# ------------------------------
+# * Guru Lands
+# ------------------------------
+PGRU: 
+
+# ------------------------------
+# * CELEBRATION CARDS
+# ------------------------------
+PCEL: SLD
+
+# ------------------------------
+# * Happy Holidays
+# ------------------------------
+HHO: SLD
+
+# ------------------------------
+# * Ponies the Galloping
+# ------------------------------
+PTG: 
+
+# ------------------------------
+# * Planechase
+# ------------------------------
+HOP: 
+PHOP: DCI
+PCA: 
+PC2: 
+
+# ------------------------------
+# * Starter Decks
+# ------------------------------
+S99: 
+S00: 
+DKM: 
+MD1: 
+
+# ------------------------------
+# * Game Night
+# ------------------------------
+GNT:
+- char: 
+  fill: rarity
+  common-fill: black
+  stroke: false
+  common-stroke: false
+  common-color: white
+  rarity: false
+GN2: 
+GN3: 
+
+# ------------------------------
+# * Welcome Deck
+# ------------------------------
+W16:
+- char: ""
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+W17:
+- char: ""
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+
+# ------------------------------
+# * Tournament Promos
+# ------------------------------
+
+# Vintage Championship
+OVNT: SLD
+
+# Legacy Championship
+OLGC: SLD
+
+# World Cup Magic Qualifiers
+WMC: SLD
+
+# Store Championship
+SCH: SLD
+
+# 2023 Regionals
+PRCQ: SLD
+PR23: SLD
+
+# Grand Prix
+PGPX: SLD
+
+# Two-Headed Giant
+P2HG: DCI
+
+# 2018 Nationals
+PNAT: SLD
+
+# Pro Tour
+PPRO: SLD
+
+# Planeswalker Championship
+PWCS: SLD
+
+# Game Day
+GDY: SLD
+
+# Gateway Promos
+PGTW: DCI
+PG07: DCI
+PG08: DCI
+
+# Chinese Zodiac Promos
+PL21: SLD
+PL22: SLD
+PL23: SLD
+PLNY: SLD
+
+# Junior Super Series
+PSUS: DCI
+PJAS: DCI
+PJJT: DCI
+PJSE: DCI
+
+# Eternal Weekend
+PEWK: SLD
+
+# ------------------------------
+# * Un-Sets (Funny)
+# ------------------------------
+
+UGL: 
+UNH: 
+UST: 
+UND:
+- char: 
+  fill: black
+  common-fill: white
+UNF:
+- char: 
+  fill: black
+  common-fill: white
+  gradient:
+    scale: 120
+    rotation: 30
+
+# ------------------------------
+# * Secret Lair
+# ------------------------------
+SLD: 
+SLX: SLD
+SLC: SLD
+SLU: SLD
+SLP: SLD
+HED: SLD
+# TODO: Each has different symbols
+PHED: SLD
+
+# ------------------------------
+# * SPELLBOOK
+# ------------------------------
+SS1:
+- char: 
+  fill: black
+  common-fill: white
+SS2:
+- char: 
+  fill: rarity
+  common-fill: black
+  stroke: false
+  common-stroke: false
+  common-color: white
+  rarity: false
+SS3:
+- char: 
+  fill: black
+  common-fill: white
+
+# ------------------------------
+# * Friday Night Magic
+# ------------------------------
+F01: DCI
+F02: DCI
+F03: DCI
+F04: DCI
+F05: DCI
+F06: DCI
+F07: DCI
+F08: DCI
+F09: DCI
+F10: DCI
+F11: SLD
+F12: SLD
+F13: SLD
+F14: SLD
+F15: SLD
+F16: SLD
+F17: SLD
+F18: SLD
+
+# ------------------------------
+# Judge Gift Program
+# ------------------------------
+JGP: DCI
+G99: 
+G00: DCI
+G01: DCI
+G02: DCI
+G03: DCI
+G04: DCI
+G05: DCI
+G06: DCI
+G07: DCI
+G08: DCI
+G09: DCI
+G10: DCI
+G11: DCI
+J12: SLD
+J13: SLD
+J14: SLD
+J15: SLD
+J16: SLD
+J17: SLD
+J18: SLD
+J19: SLD
+J20:
+- char: 
+  fill: black
+  common-fill: white
+PJ21: J20
+P22: J20
+P23: J20
+
+# ------------------------------
+# * Magic Player Rewards
+# ------------------------------
+PR2: DCI
+MPR: DCI
+P03: DCI
+P04: DCI
+P05: DCI
+P06: DCI
+
+# ------------------------------
+# * Heroes of the Realm
+# ------------------------------
+HTR: SLD
+HTR17: SLD
+PHTR: SLD
+PH17: SLD
+PH18: SLD
+PH19: SLD
+PH20: SLD
+PH21: SLD
+
+# ------------------------------
+# * Modern Horizons
+# ------------------------------
+MH1: 
+H1R: MH1
+MH2: 
+
+# ------------------------------
+# * Jumpstart
+# ------------------------------
+JMP:
+- char: 
+  fill: black
+  common-fill: white
+J21: 
+J22: 
+
+# ------------------------------
+# * Commander Collection
+# ------------------------------
+CC1:
+- char: 
+  fill: black
+  common-fill: white
+CC2:
+- char: 
+  fill: black
+  common-fill: white
+
+# ------------------------------
+# * Premium Deck Series
+# ------------------------------
+H09: 
+PD2: 
+PD3:
+- char: 
+  fill: black
+  common-fill: white
+
+# ------------------------------
+# * Convention Promos
+# ------------------------------
+
+# San Diego Comicon
+PS14: M15
+PS15: ORI
+# TODO: PS16-PS18 have multiple symbols
+PS16: SLD
+PS17: SLD
+PS18: SLD
+PS19: WAR
+
+# URL Convention Promo
+PURL: SLD
+
+# Dragon-con
+PDRC: 
+
+# HasCon
+H17: 
+
+# Magic Fest
+PF19: SLD
+PF20: SLD
+PF21: SLD
+PF23: SLD
+
+# ------------------------------
+# * DCI / Wizards Play Network
+# ------------------------------
+DCI: 
+PDCI: DCI
+PWPN: DCI
+PW09: DCI
+PW10: DCI
+PW11: SLD
+PW12: SLD
+PW21: SLD
+PW22: SLD
+PW23: SLD
+
+# ------------------------------
+# * Arena League
+# ------------------------------
+PARL: PMTG2
+PAL99: USG
+# TODO: PAL00 Uses different symbols for each card
+PAL00: PARL2
+PAL01: PARL2
+PAL02: PARL2
+PAL03: DCI
+PAL04: DCI
+PAL05: DCI
+PAL06: DCI
+
+# ------------------------------
+# * Magic Online (MTGO)
+# ------------------------------
+
+# MTGO PROMOS
+PRM: MTGO
+
+# MTGO AVATARS
+PMOA: MTGO
+
+# MTGO Theme Decks
+TD0:
+- char: ""
+  gradient:
+    rotation: 0
+    scale: 80
+    colors:
+      u:
+      - color: [199, 225, 241]
+        location: 0
+      - color: [98, 110, 119]
+        location: 1024
+      - color: [199, 225, 241]
+        location: 2048
+      - color: [98, 110, 119]
+        location: 3072
+      - color: [199, 225, 241]
+        location: 4096
+      r:
+      - color: [213, 180, 109]
+        location: 0
+      - color: [146, 116, 67]
+        location: 1024
+      - color: [213, 180, 109]
+        location: 2048
+      - color: [146, 116, 67]
+        location: 3072
+      - color: [213, 180, 109]
+        location: 4096
+      m:
+      - color: [245, 149, 29]
+        location: 0
+      - color: [192, 55, 38]
+        location: 1024
+      - color: [245, 149, 29]
+        location: 2048
+      - color: [192, 55, 38]
+        location: 3072
+      - color: [245, 149, 29]
+        location: 4096
+
+# ------------------------------
+# * Magic the Gathering Arena
+# ------------------------------
+
+# Arena New Player Experience
+ANA: MTGA
+OANA: MTGA
+XANA: MTGA
+
+# Arena Promos
+PANA: MTGA
+
+# Arena Beginner Set
+ANB: MTGA
+
+# MTGA Explorer Anthology
+EA1: MTGA
+EA2: MTGA
+
+# MTGA Historic Anthology
+HA1: 
+HA2: HA1
+HA3: HA1
+HA4: HA1
+HA5: HA1
+HA6: HA1
+
+# MTGA Alchemy Horizons
+HBG: 
+
+# MTGA Alchemy Years
+Y22:
+- char: 
+  fill: black
+  common-fill: white
+  gradient:
+    rotation: 25
+    scale: 60
+    colors:
+      u:
+      - color: [98, 110, 119]
+        location: 0
+      - color: [199, 225, 241]
+        location: 2776
+        midpoint: 78
+      r:
+      - color: [146, 116, 67]
+        location: 0
+      - color: [213, 180, 109]
+        location: 2776
+        midpoint: 78
+      m:
+      - color: [192, 55, 38]
+        location: 0
+      - color: [245, 149, 29]
+        location: 2776
+        midpoint: 78
+Y23:
+- char: 
+  fill: black
+  common-fill: white
+  gradient:
+    rotation: 25
+    scale: 60
+    colors:
+      u:
+      - color: [98, 110, 119]
+        location: 0
+      - color: [199, 225, 241]
+        location: 2776
+        midpoint: 78
+      r:
+      - color: [146, 116, 67]
+        location: 0
+      - color: [213, 180, 109]
+        location: 2776
+        midpoint: 78
+      m:
+      - color: [192, 55, 38]
+        location: 0
+      - color: [245, 149, 29]
+        location: 2776
+        midpoint: 78
+YMID: Y22
+YNEO: Y22
+YSNC: Y22
+YDMU: Y23
+YBRO: Y23
+YONE: Y23
+
+# ------------------------------
+# * From the Vault
+# ------------------------------
+V09:
+- char: 
+  fill: white
+  common-fill: white
+  stroke: false
+  common-stroke: false
+- char: 
+  rarity: false
+V10:
+- char: 
+  fill: white
+  common-fill: white
+  gradient:
+    rotation: 0
+V11: 
+V12: 
+V13:
+- char: 
+  scale: 0.95
+  fill: black
+  common-fill: white
+  gradient:
+    rotation: 15
+- char: 
+  scale: 0.95
+  rarity: false
+  stroke: false
+  common-stroke: false
+  drop-shadow:
+    distance: 16
+V14: 
+V15: 
+V16: 
+V17:
+- char: 
+  fill: rarity
+  common-fill: white
+  rarity: false
+  stroke: false
+DRB: 
+
+# ------------------------------
+# * Masters
+# ------------------------------
+ME1: 
+ME2: 
+ME3: 
+ME4: 
+MMA: 
+VMA: 
+TPR: 
+MM2: 
+EMA: 
+MM3: 
+IMA: 
+A25:
+- char: 
+  fill: rarity
+  common-fill: white
+  stroke: false
+  common-stroke: false
+MED:
+  - char: 
+    fill: black
+    common-fill: white
+UMA:
+- char: 
+  fill: black
+  common-fill: white
+  gradient:
+    rotation: 135
+    scale: 100
+    colors:
+      u:
+      - color: [98, 110, 119]
+        location: 0
+        midpoint: 50
+      - color: [199, 225, 241]
+        location: 1024
+        midpoint: 50
+      - color: [98, 110, 119]
+        location: 2048
+        midpoint: 50
+      - color: [199, 225, 241]
+        location: 3072
+        midpoint: 50
+      - color: [98, 110, 119]
+        location: 4096
+        midpoint: 50
+      r:
+      - color:
+        - 146
+        - 116
+        - 67
+        location: 0
+        midpoint: 50
+      - color:
+        - 213
+        - 180
+        - 109
+        location: 1024
+        midpoint: 50
+      - color:
+        - 146
+        - 116
+        - 67
+        location: 2048
+        midpoint: 50
+      - color:
+        - 213
+        - 180
+        - 109
+        location: 3072
+        midpoint: 50
+      - color:
+        - 146
+        - 116
+        - 67
+        location: 4096
+        midpoint: 50
+      m:
+      - color:
+        - 192
+        - 55
+        - 38
+        location: 0
+        midpoint: 50
+      - color:
+        - 245
+        - 149
+        - 29
+        location: 1024
+        midpoint: 50
+      - color:
+        - 192
+        - 55
+        - 38
+        location: 2048
+        midpoint: 50
+      - color:
+        - 245
+        - 149
+        - 29
+        location: 3072
+        midpoint: 50
+      - color:
+        - 192
+        - 55
+        - 38
+        location: 4096
+        midpoint: 50
+2XM: 
+AKR: 
+KLR: 
+TSR:
+- char: 
+  fill: black
+  common-fill: white
+TSB:
+- char: 
+  fill: white
+  stroke:
+    color: white
+  common-fill: white
+2X2: 
+DMR: 
+SIR: 
+SIS:
+- char: 
+  stroke: false
+  common-stroke: false
+  common-color: white
+- char: 
+  stroke:
+    weight: 1
+  common-stroke:
+    weight: 1
+  rarity: false
+CMM:
+  char: 
+  fill: white
+  common-fill: white
+
+# ------------------------------
+# * DUEL DECKS
+# ------------------------------
+
+# Elves vs Goblins
+EVG: 
+DD1: EVG
+
+# Jace vs Chandra
+JVC: 
+DD2: JVC
+
+# Divine vs Demonic
+DVD: 
+DDC: DVD
+
+# Garruk vs Liliana
+GVL: 
+DDD: GVL
+
+# Phyrexian vs Coalition
+DDE:
+- char: 
+  fill: black
+  common-fill: white
+
+# Elspeth vs Tezzeret
+DDF:
+- char: 
+  fill: black
+  common-fill: white
+
+# Knights vs Dragons
+DDG: 
+
+# Mirrodin Pure vs New Phyrexia
+TD2: 
+
+# Ajani vs Nicol Bolas
+DDH: 
+
+# Venser vs Koth
+DDI: 
+
+# Izzet vs Golgari
+DDJ: 
+
+# Sorin vs Tibalt
+DDK: 
+
+# Heroes vs Monsters
+DDL: 
+
+# Jace vs Vraska
+DDM: 
+
+# Speed vs Cunning
+DDN: 
+
+# Elspeth vs Kiora
+DDO: 
+
+# Zendikar vs Eldrazi
+DDP: 
+
+# Blessed vs Cursed
+DDQ: 
+
+# Nissa vs Ob Nixilis
+DDR: 
+
+# Mind vs Might
+DDS: 
+
+# Merfolk vs Goblins
+DDT: 
+
+# Elves vs Inventors
+DDU:
+- char: 
+  fill: black
+  common-fill: white
+
+# Jiang Yanggu vs Mu Yanling
+GS1:
+- char: 
+  fill: rarity
+  common-fill: white
+  common-color: black
+  stroke: false
+  common-stroke: false
+  rarity: false
+
+# ------------------------------
+# * Core Sets
+# ------------------------------
+1E: 
+LEA: 
+2E: 
+LEB: 
+2U: 
+2ED: 
+3E: 
+3ED: 
+FBB: 3ED
+SUM: 
+PSUM: SUM
+4ED: 
+4BB: 4ED
+5ED: 
+6ED: 
+7ED: 
+8ED: 
+9ED: 
+10E: 
+M10:
+- char: 
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+M11:
+- char: 
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+M12:
+- char: 
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+M13:
+- char: 
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+M14:
+- char: 
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+M15:
+- char: 
+  stroke: false
+  common-stroke: false
+  fill: black
+  common-fill: white
+# M15 Promo Pack
+PPC1: M15
+ORI: 
+M19:
+- char: 
+  fill: black
+  color: false
+  common-fill: white
+  common-color: false
+M20:
+- char: 
+  fill: black
+  color: false
+  common-fill: white
+  common-color: false
+# M20 Promo Pack
+PPP1: SLD
+M21:
+- char: 
+  fill: black
+  common-fill: white
+
+# ------------------------------
+# * Core Commander
+# ------------------------------
+CMD: ""
+CM1: ""
+C13: ""
+C14: ""
+C15: ""
+C16: ""
+CMA: ""
+C17: ""
+CM2:
+- char: ""
+  fill: white
+  color: false
+  common-fill: white
+  common-color: false
+C18: ""
+C19:
+- char: ""
+  fill: white
+  stroke:
+    weight: 4
+  common-fill: white
+  common-stroke:
+    common: black
+    weight: 4
+- char: ""
+  fill: false
+  common-fill: false
+C20:
+- char: ""
+  fill: white
+  common-fill: white
+C21:
+- char: ""
+  fill: white
+  stroke:
+    weight: 4
+  common-fill: white
+  common-stroke:
+    weight: 4
+  gradient:
+    rotation: 0
+    scale: 100
+- char: ""
+  rarity: false
+CMR: ""
+CMC: ""
+CLB:
+- char: ""
+  rarity: false
+  color: white
+  stroke: false
+  common-color: white
+  common-stroke:
+    color: black
+    weight: 3
+- char: ""
+  fill: white
+  common-fill: white
+SCD:
+- char: ""
+  fill: white
+  stroke:
+    color: black
+    weight: 4
+    style: in
+  common-fill: white
+  common-stroke:
+    color: black
+    weight: 4
+    style: in
+- char: ""
+  rarity: false
+  stroke:
+    color: black
+    weight: 4
+    style: center
+  common-stroke:
+    color: black
+    weight: 4
+    style: center
+
+# ------------------------------
+# * Expansions
+# ------------------------------
+ARN: ""
+ATQ: ""
+LEG: ""
+DRK: ""
+FEM: ""
+CHR: ""
+
+# Ice Age Block
+ICE: ""
+ALL: ""
+HML: ""
+CSP: ""
+CST: CSP
+
+# Mirage Block
+MIR: ""
+VIS: ""
+WTH:
+  char: 
+  fill: white
+  common-fill: white
+
+# Tempest Block
+TMP: ""
+STH: ""
+EXO:
+- char: ""
+  fill: black
+  common-fill: white
+
+# Anthologies
+# TODO: Different symbol each card
+ATH: ""
+
+# Urza's Block
+USG: ""
+ULG: ""
+UDS: ""
+
+# Portal
+POR: ""
+P02: ""
+PTK: ""
+
+# Masques Block
+MMQ: ""
+NEM: ""
+PCY: ""
+
+# Invasion Block
+INV: ""
+PLS: ""
+APC: ""
+
+# Odyssey Block
+ODY: ""
+TOR: ""
+JUD: ""
+
+# Onslaught Block
+ONS: ""
+LGN: ""
+SCG: ""
+
+# Mirrodin Block
+MRD: ""
+DST: ""
+5DN: ""
+
+# Kamigawa Block
+CHK: ""
+BOK: ""
+SOK: ""
+
+# Ravnica Block
+RAV: ""
+GPT: ""
+DIS: ""
+
+# Time Spiral Block
+TSP: ""
+PLC: ""
+FUT: ""
+
+# Lorwyn Block
+LRW: ""
+MOR: ""
+
+# Shadowmoor Block
+SHM: ""
+EVE: ""
+
+# Alara Block
+ALA: ""
+CON: ""
+ARB: ""
+
+# Zendikar block
+ZEN: ""
+WWK:
+- char: ""
+  fill: black
+  common-fill: white
+ROE: ""
+
+# Archenemy
+ARC: ""
+PARC: DCI
+
+# Scars of Mirrodin Block
+SOM:
+- char: ""
+  fill: black
+  common-fill: white
+MBS:
+- char: ""
+  fill: black
+  common-fill: white
+NPH:
+- char: ""
+  fill: black
+  common-fill: white
+
+# Innistrad Block
+ISD: ""
+DKA: ""
+AVR: ""
+PHEL: AVR
+
+# Return to Ravnica Block
+RTR: ""
+GTC: ""
+DGM: ""
+
+# Theros Block
+THS: ""
+THP1: THS
+BNG: ""
+THP2: BNG
+JOU: ""
+THP3: JOU
+
+# Khans of Tarkir Block
+KTK: ""
+FRF: ""
+UGIN: FRF
+DTK:
+- char: ""
+  fill: black
+  common-fill: white
+PTKDF: DTK
+
+# Battle for Zendikar
+BFZ: ""
+EXP: ""
+OGW: ""
+
+# Shadows Over Innistrad Block
+SOI: ""
+EMN: ""
+
+# Kaladesh Block
+KLD: ""
+MPS: ""
+
+# Aether Revolt
+AER: ""
+
+# Amonkhet
+AKH:
+- char: ""
+  fill: black
+  common-fill: white
+MP2: ""
+E01: ""
+HOU: ""
+
+# Ixalan Block
+XLN: ""
+PXTC: XLN
+E02:
+- char: ""
+  fill: black
+  common-fill: white
+RIX: ""
+
+# Dominaria
+DOM:
+- char: ""
+  fill: black
+  common-fill: black
+  common-color: white
+  common-stroke:
+    color: black
+
+# Battlebond
+BBD:
+- char: ""
+  fill: black
+  common-fill: white
+
+# Guilds of Ravnica
+GRN: ""
+RNA: ""
+# TODO: Symbols based on guild
+PRWK: GRN
+GK1: GRN
+PRW2: RNA
+GK2: RNA
+
+# War of the Spark
+WAR: ""
+
+# Throne of Eldraine
+ELD: ""
+
+# Theros Beyond Death
+THB:
+- char: ""
+  fill: black
+  common-fill: white
+
+# Ikoria Lair of Behemoths
+IKO:
+- char: ""
+  fill: black
+  common-fill: white
+
+# Zendikar Rising
+ZNR: ""
+ZNE: ""
+ZNC:
+- char: ""
+  fill: white
+  common-fill: white
+
+# Kaldheim
+KHM: ""
+KHC: ""
+
+# Strixhaven
+STX:
+- char: ""
+  fill: black
+  common-fill: white
+STA: ""
+
+# Adventures in the Forgotten Realms
+AFR:
+- char: ""
+  fill: black
+  common-fill: white
+AFC:
+- char: ""
+  fill: black
+  common-fill: white
+
+# Innistrad MID / VOW
+MID:
+- char: ""
+  stroke: false
+  common-stroke: false
+- char: ""
+  rarity: false
+  common-stroke:
+    color: black
+  common-color: white
+MIC:
+- char: ""
+  fill: black
+  common-fill: white
+VOW: ""
+VOC:
+- char: ""
+  fill: white
+  common-fill: white
+DBL: SLD
+
+# Kamigawa Neo
+NEO: ""
+NEC: ""
+
+# Streets of New Capenna
+SNC:
+- char: ""
+  gradient:
+    rotation: 0
+    scale: 100
+NCC:
+- char: ""
+  rarity: false
+  color: white
+  common-color: white
+  common-stroke:
+    color: black
+- char: ""
+
+# Dominaria United
+DMU:
+- char: ""
+  fill: black
+  common-fill: white
+DMC:
+- char: ""
+  color: white
+  stroke: false
+  common-color: black
+  common-stroke: false
+  rarity: false
+- char: ""
+  stroke: false
+  common-stroke: false
+  common-color: black
+- char: ""
+  stroke: false
+  rarity: false
+  color: black
+  common-color: white
+  common-stroke: false
+WDMU: SLD
+
+# Brother's War
+BRO: ""
+BRR:
+- char: ""
+  stroke: false
+  common-stroke: false
+  fill:
+    u:
+    - 98
+    - 110
+    - 119
+    r:
+    - 146
+    - 116
+    - 67
+    m:
+    - 192
+    - 55
+    - 38
+  common-fill: white
+  gradient:
+    rotation: 135
+- char: ""
+  stroke:
+    color: white
+  rarity: false
+  fill: false
+  common-fill: false
+BRC:
+- char: ""
+  stroke: false
+  common-stroke: false
+  fill: white
+  common-fill: white
+- char: ""
+  stroke:
+    color: white
+  rarity: false
+
+# Warhammer 40K
+40K:
+- char: ""
+  color: white
+  fill: black
+  stroke: false
+  common-color: black
+  common-fill: white
+  common-stroke: false
+  rarity: false
+- char: ""
+  color: black
+  fill: false
+  stroke: false
+  common-color: black
+  common-fill: false
+  common-stroke: false
+  gradient:
+    rotation: 0
+    scale: 90
+- char: ""
+  color: black
+  fill: false
+  stroke: false
+  common-color: white
+  common-fill: false
+  common-stroke: false
+  rarity: false
+
+# Transformers
+BOT: ""
+
+# Phyrexia: All Will Be One
+ONE: ""
+ONC:
+- char: ""
+  fill: white
+  common-fill: white
+  stroke:
+    color: black
+    weight: 3
+    style: in
+  common-stroke:
+    color: white
+- char: ""
+  rarity: false
+  stroke: false
+  common-stroke:
+    color: white
+- char: ""
+  rarity: false
+  stroke:
+    color: black
+    style: center
+  common-stroke:
+    color: white
+    style: center
+
+# March of the Machines
+MOM: ""
+MOC:
+- char: ""
+  color: white
+  common-color: white
+  common-stroke:
+    color: black
+  rarity: false
+- char: ""
+  fill: black
+  common-fill: black
+  gradient:
+    rotation: 0
+- char: ""
+  fill: black
+  common-fill: white
+  rarity: false
+MUL: ""
+MAT: ""
+
+# Lord of the Rings: Tales of Middle Earth
+LTR:
+- char: ""
+  stroke:
+    weight: 4
+  common-stroke:
+    weight: 4
+  gradient:
+    rotation: 135
+    scale: 100
+    colors:
+      u:
+      - color:
+        - 98
+        - 110
+        - 119
+        location: 2048
+        midpoint: 50
+      r:
+      - color:
+        - 146
+        - 116
+        - 67
+        location: 2048
+        midpoint: 50
+      m:
+      - color:
+        - 192
+        - 55
+        - 38
+        location: 2048
+        midpoint: 50
+- char: ""
+  stroke:
+    weight: 4
+  common-stroke:
+    weight: 4
+  fill: black
+  common-fill: white
+LTC:
+- char: ""
+- char: ""
+  rarity: false
+  color: white
+
+# Wilds of Eldraine
+WOE: ""
+WOC:
+- char: ""
+  fill: white
+  common-fill: white
+
+# Doctor Who
+WHO: ""

@@ -1,6 +1,6 @@
-# Proxyshop
 <div align="center" markdown="1" style="font-size: large;">
 
+![Showcase Image](/src/img/cover-photo.png)
 Proxyshop is a Photoshop automation app that generates high-quality Magic the Gathering card renders. 
 Inspired by Chilli-Axe's [original Photoshop automation scripts](https://github.com/chilli-axe/mtg-photoshop-automation).
 If you need help with this app or wish to troubleshoot an issue, [please join our discord](https://discord.gg/magicproxies)!
@@ -14,8 +14,6 @@ If you need help with this app or wish to troubleshoot an issue, [please join ou
 [![GitHub](https://img.shields.io/github/license/MrTeferi/Proxyshop?color=red&style=plastic)](https://github.com/MrTeferi/Proxyshop/blob/main/LICENSE)
 
 </div>
-
-![Showcase Image](https://i.imgur.com/OJrXeqj.jpg)
 
 # 🛠️Requirements
 - Photoshop (2017-2024 Supported)
@@ -44,23 +42,23 @@ If you need help with this app or wish to troubleshoot an issue, [please join ou
 6. You can also drag art images or folders containing art images onto the Proxyshop app, Proxyshop will automatically start rendering those cards.
 7. During the render process the console at the bottom will display the current progress and prompt you if any failures occur.
 
-# ✒️ Art File Naming
+# 🎨 Art File Naming
 - Art file types currently supported are: `jpg`, `jpeg`, `jpf`, `png`, `tif`, and `webp`. **NOTE**: `webp` requires Photoshop 2022+.
 - Art files should be named after **real Magic the Gathering cards** and should be named as accurately as possible, e.g. `Damnation.jpg`.
 - Proxyshop supports several optional tags when naming your art files, to give you more control over how the card is rendered!
-    - **Set** `[SET]`: Forces Photoshop to render a version of that card from a **specific MTG expansion** matching the given **set code**. This tag is **not** case sensitive, so both "set" and "SET" will work.
+    - **Set** `[SET]` — Forces Photoshop to render a version of that card from a **specific MTG expansion** matching the given **set code**. This tag is **not** case sensitive, so both "set" and "SET" will work.
     ```
     Damnation [TSR].jpg
     ```
-    - **Collector Number** `{num}`: Only works if **Set** tag was also provided, render a version of that card with the exact **set code** and **number** combination. This is particularly useful in cases where a set has multiple versions of the same card, for example Secret Lair (SLD) has 3 different versions of **Brainstorm**.
+    - **Collector Number** `{num}` — Only works if **Set** tag was also provided, render a version of that card with the exact **set code** and **number** combination. This is particularly useful in cases where a set has multiple versions of the same card, for example Secret Lair (SLD) has 3 different versions of **Brainstorm**.
     ```
     Brainstorm [SLD] {175}.jpg
     ```
-    - **Artist Name** `(Artist Name)`: When filling in the artist name, Proxyshop will override the name present in the Scryfall data with the name you provide. This change is **purely cosmetic** and does not affect how the card is fetched, nor does it conflict with other tags.
+    - **Artist Name** `(Artist Name)` — When filling in the artist name, Proxyshop will override the name present in the Scryfall data with the name you provide. This change is **purely cosmetic** and does not affect how the card is fetched, nor does it conflict with other tags.
     ```
     Brainstorm [SLD] {175} (Rusty Shackleford).jpg
     ```
-    - **Creator Name** `$Creator Name`: This tag is not widely supported by Proxyshop's default templates. This tag allows you to insert your preferred name as a user/designer/creator, and if the template supports the **creator name feature** this text will be placed on a specified text layer. Can be used as a kind of signature for your work. **NOTE**: This tag **MUST** be placed at the **VERY END** of the art file name.
+    - **Creator Name** `$Creator Name` — This tag is not widely supported by Proxyshop's default templates. This tag allows you to insert your preferred name as a user/designer/creator, and if the template supports the **creator name feature** this text will be placed on a specified text layer. Can be used as a kind of signature for your work. **NOTE**: This tag **MUST** be placed at the **VERY END** of the art file name.
     ```
     Brainstorm [SLD] {175}$My Creator Name.jpg
     ```
@@ -107,6 +105,7 @@ If you need help with this app or wish to troubleshoot an issue, [please join ou
     - **800 DPI**: Downscales card images above 800 DPI to a maximum of 800 DPI. Most Proxyshop templates are 1200 DPI which is much higher than anyone really needs. Most printing services do not print above 800 DPI. (**Recommended**: On)
 
 # 🐍 Setup Guide (Python Environment)
+Setting up the Python environment for Proxyshop is intended for advanced users, contributors, and anyone who wants to get their hands dirty making a plugin or custom template for the app!
 1.  Install Poetry using one of these methods.
     ```shell
     # Install pipx, then install poetry with pipx (Recommended)
