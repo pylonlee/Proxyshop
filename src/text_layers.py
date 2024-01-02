@@ -112,7 +112,9 @@ class TextField:
                case 'Typeline'|'Typeline Shift':
                  self.layer.textItem.font='魏碑字体'
                  self.contents=self.contents.replace(" ", "")
-                 self.layer.textItem.size=10.5
+                 self.contents=self.contents.replace("—", "～")
+                 self.layer.textItem.size=10
+                 self.layer.translate(0, 12)
                case 'Typeline - Adventure':
                  self.layer.textItem.font='魏碑字体'
                  self.layer.textItem.size=9.5
@@ -121,8 +123,7 @@ class TextField:
                  self.layer.textItem.size=6.5
                case layername if 'Text' in layername: 
                  self.layer.textItem.font='DFPHeiW3'
-                 self.layer.textItem.size=8
-                 self.layer.textItem.tracking=-20
+                 self.layer.textItem.size=7.8
                  if len(self.contents)>12:
                     self.contents_centered=False
                     self.layer.textItem.justification=Justification.Left
@@ -546,7 +547,7 @@ class FormattedTextArea (FormattedTextField):
     @cached_property
     def scale_width(self) -> bool:
         # Scale text to fit reference width (Default: False)
-        self.layer.textItem.tracking=-20
+        # self.layer.textItem.tracking=-20
         if scale_width := self.kwargs.get('scale_width'):
             return scale_width
         return False
