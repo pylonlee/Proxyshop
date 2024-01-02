@@ -104,24 +104,25 @@ class TextField:
          if check_contains_chinese(self.contents):                    
           match self.layer.name:
                case 'Card Name'|'Card Name Shift':
-                 self.layer.textItem.font='AaBanruokaishujf'
-                 self.layer.textItem.size=10
+                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.size=11
                case 'Card Name - Adventure':
-                 self.layer.textItem.font='AaBanruokaishujf'
-                 self.layer.textItem.size=8
+                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.size=10
                case 'Typeline'|'Typeline Shift':
-                 self.layer.textItem.font='KaiTi'
+                 self.layer.textItem.font='魏碑字体'
                  self.contents=self.contents.replace(" ", "")
-                 self.layer.textItem.size=8.5
+                 self.layer.textItem.size=10.5
                case 'Typeline - Adventure':
-                 self.layer.textItem.font='KaiTi'
-                 self.layer.textItem.size=7.5
+                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.size=9.5
                case 'Rules Text - Adventure':
-                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.font='DFPHeiW3'
                  self.layer.textItem.size=6.5
                case layername if 'Text' in layername: 
-                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.font='DFPHeiW3'
                  self.layer.textItem.size=8
+                 self.layer.textItem.tracking=-20
                  if len(self.contents)>12:
                     self.contents_centered=False
                     self.layer.textItem.justification=Justification.Left
@@ -348,9 +349,9 @@ class FormattedTextField (TextField):
             bold_range.putInteger(idTo, contents_index)  # bold end index
             try:
              if check_contains_chinese(self.contents):
-               bold_style.putString(fontPostScriptName, 'KaiTi')
+               bold_style.putString(fontPostScriptName, 'DFKaiGB-W5')
                if self.font_size > 7.5:
-                bold_style.putUnitDouble(size, pointsUnit, 8)
+                bold_style.putUnitDouble(size, pointsUnit, 7.5)
                else:
                 bold_style.putUnitDouble(size, pointsUnit, self.font_size)               
              else :          
@@ -360,7 +361,7 @@ class FormattedTextField (TextField):
              print(f"An error occurred: {e}")
             #bold_style.putString(fontPostScriptName, con.font_rules_text_bold)
             #bold_style.putString(fontName, con.font_rules_text_bold)
-            bold_style.putUnitDouble(size, pointsUnit, self.font_size)
+            #bold_style.putUnitDouble(size, pointsUnit, self.font_size)
             apply_color(bold_style, self.color)
             bold_style.putBoolean(autoLeading, False)
             bold_style.putUnitDouble(leading, pointsUnit, self.font_size)
@@ -376,9 +377,9 @@ class FormattedTextField (TextField):
             # Add by Vertigor
             try:
              if check_contains_chinese(self.contents):       
-               italic_style.putString(fontPostScriptName, 'KaiTi')
+               italic_style.putString(fontPostScriptName, 'DFKaiGB-W5')
                if self.font_size > 7.5:
-                italic_style.putUnitDouble(size, pointsUnit, 8)
+                italic_style.putUnitDouble(size, pointsUnit, 7.5)
                else:
                 italic_style.putUnitDouble(size, pointsUnit, self.font_size)               
              else :          
@@ -388,7 +389,7 @@ class FormattedTextField (TextField):
              print(f"An error occurred: {e}")
             #italic_style.putString(fontPostScriptName, con.font_rules_text_italic)
             #italic_style.putString(fontName, con.font_rules_text_italic)
-            italic_style.putUnitDouble(size, pointsUnit, self.font_size)
+            #italic_style.putUnitDouble(size, pointsUnit, self.font_size)
             apply_color(italic_style, self.color)
             italic_style.putBoolean(autoLeading, False)
             italic_style.putUnitDouble(leading, pointsUnit, self.font_size)
@@ -545,6 +546,7 @@ class FormattedTextArea (FormattedTextField):
     @cached_property
     def scale_width(self) -> bool:
         # Scale text to fit reference width (Default: False)
+        self.layer.textItem.tracking=-20
         if scale_width := self.kwargs.get('scale_width'):
             return scale_width
         return False
