@@ -21,7 +21,6 @@ from src.layouts import ClassLayout
 import src.format_text as ft
 import src.helpers as psd
 
-
 class ClassMod (NormalTemplate):
     """
     * A template modifier for Class cards introduced in Adventures in the Forgotten Realms.

@@ -277,7 +277,7 @@ class SplitTemplate (BaseTemplate):
             self.layout.art_file = [self.layout.art_file] * 2
 
         # Manually select a second artwork if not provided
-        if len(self.layout.art_file) == 1:
+        if len(str(self.layout.art_file)) == 1:
             self.console.update("Please select the second split art!")
             file = self.app.openDialog()
             if not file:

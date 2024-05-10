@@ -71,7 +71,7 @@ class BaseTemplate:
 
     def __init__(self, layout: Any, **kwargs):
 
-        # Strip flavor text, string or list
+        # Strip flavor text, string or list    
         if cfg.remove_flavor:
             layout.flavor_text = "" if isinstance(
                 layout.flavor_text, str
@@ -81,7 +81,7 @@ class BaseTemplate:
         if cfg.remove_reminder:
             layout.oracle_text = ft.strip_reminder_text(layout.oracle_text) if isinstance(
                 layout.oracle_text, str
-            ) else [ft.strip_reminder_text(n) for n in layout.oracle_text]
+            ) else [ft.strip_reminder_text(n) for n in layout.oracle_text]  
 
         # Setup manual properties
         self.layout = layout

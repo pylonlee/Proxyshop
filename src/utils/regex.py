@@ -12,6 +12,7 @@ class Reg:
     PROTOTYPE: re.Pattern = re.compile(r"Prototype (.+) [—\-] ([0-9]{0,2}/[0-9]{0,2}) \((.+)\)")
     PLANESWALKER: re.Pattern = re.compile(r"(^[^:]*$|^.*:.*$)", re.MULTILINE)
     CLASS: re.Pattern = re.compile(r"(.+?): Level (\d)\n(.+)")
+    CLASS_CS: re.Pattern = re.compile(r"(.+?):等级(\d)\n(.+)")
 
     # Filename - Card Art
     PATH_ARTIST: re.Pattern = re.compile(r"\(+(.*?)\)")

@@ -5,6 +5,7 @@ CARD LAYOUTS
 from typing import Optional, Match, Union, Type
 from os import path as osp
 from pathlib import Path
+import re
 
 # Local Imports
 from src.console import console
@@ -669,9 +670,14 @@ class MutateLayout(NormalLayout):
     """
 
     @auto_prop_cached
+    def oracle_text_unprocessed(self) -> str:
+        """str: Unaltered text to split between oracle and mutate."""
+        return self.card.get('printed_text', self.oracle_text_raw) if self.is_alt_lang else self.oracle_text_raw
+    
+    @auto_prop_cached
     def oracle_text(self) -> str:
         """Remove the mutate ability text."""
-        return strip_lines(super().oracle_text, 1)
+        return strip_lines(self.oracle_text_unprocessed, 1)
 
     """
     * Mutate Properties
@@ -680,7 +686,7 @@ class MutateLayout(NormalLayout):
     @auto_prop_cached
     def mutate_text(self) -> str:
         """Correctly formatted mutate ability text."""
-        return get_line(super().oracle_text, 0)
+        return get_line(self.oracle_text_unprocessed, 0)
 
 
 class PrototypeLayout(NormalLayout):
@@ -1070,13 +1076,20 @@ class ClassLayout(NormalLayout):
         """Unpack class text into list of dictionaries containing ability levels, cost, and text."""
 
         # Initial class ability
-        initial, lines = self.oracle_text.split('\n')
+        self.class_text = self.class_text.replace('：', ':')
+        self.class_text = self.class_text.replace('\n//', '')
+        self.class_text = self.class_text.replace('//', '')         
+        pattern = r'Level_\d+'
+        self.class_text = re.sub(pattern, '', self.class_text)       
+        print(self.class_text.split('\n'))
+        initial, *lines = self.class_text.split('\n')
+        print(lines)
         abilities: list[dict] = [{'text': initial, 'cost': None, 'level': 1}]
 
         # Add level-up abilities
         for line in ["\n".join(lines[i:i + 2]) for i in range(0, len(lines), 2)]:
             # Try to match this line to a class ability
-            details = Reg.CLASS.match(line)
+            details = Reg.CLASS_CS.match(line)
             if details and len(details.groups()) >= 3:
                 abilities.append({
                     'cost': details[1],
