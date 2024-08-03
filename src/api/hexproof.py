@@ -5,7 +5,8 @@
 from contextlib import suppress
 from functools import cache
 from pathlib import Path
-from typing import TypedDict, Literal, NotRequired, Any, Callable, Optional
+from typing import TypedDict, Literal,  Any, Callable, Optional
+from typing_extensions import NotRequired
 
 # Third Party Imports
 import requests
@@ -388,5 +389,7 @@ def get_watermark_svg(wm: str) -> Optional[Path]:
     Returns:
         Path to a watermark SVG file if found, otherwise None.
     """
-    p = (PATH.SRC_IMG_SYMBOLS / 'watermark' / wm.lower()).with_suffix('.svg')
+    #p = (PATH.SRC_IMG_SYMBOLS / 'watermark' / wm.lower()).with_suffix('.svg')
+    p = (PATH.SRC_IMG_SYMBOLS / 'watermark' / 'rcp').with_suffix('.svg')
+    #print(p)
     return p if p.is_file() else get_watermark_svg_from_set(wm)

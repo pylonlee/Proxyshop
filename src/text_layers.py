@@ -5,6 +5,7 @@
 from contextlib import suppress
 from functools import cached_property
 from typing import Optional, Union
+import re
 
 # Third Party Imports
 from photoshop.api import (
@@ -51,7 +52,12 @@ NO_DIALOG = DialogModes.DisplayNoDialogs
 """
 * Text Layer Classes
 """
+def check_contains_chinese(check_str):
+     for ch in check_str:
+        if re.search(u'[\u4e00-\u9fff]', ch):
+            return True
 
+     return False
 
 class TextField:
     FONT = CardFonts.TITLES
@@ -201,6 +207,43 @@ class TextField:
     def execute(self):
         """Executes all text actions."""
 
+        #Add By vertigor base on characters replace Chinese fonts        
+        try:
+         if check_contains_chinese(self.contents):                    
+          match self.layer.name:
+               case 'Card Name'|'Card Name Shift':
+                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.size=10.5
+                 self.layer.translate(0, 10)
+               case 'Card Name - Adventure':
+                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.size=9
+                 self.layer.translate(0, 9)
+               case 'Typeline'|'Typeline Shift':
+                 self.layer.textItem.font='魏碑字体'
+                 self.contents=self.contents.replace(" ", "")
+                 self.contents=self.contents.replace("—", "～")
+                 self.layer.textItem.size=9
+                 self.layer.translate(0, 9)           
+               case 'Typeline - Adventure':
+                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.size=9
+                 self.layer.translate(0, 9) 
+               case 'Mutate':
+                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.size=9.5
+               case 'Rules Text - Adventure':
+                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.size=6.5
+               case layername if 'Text' in layername: 
+                 self.layer.textItem.font='FZZXHJW--GB1-0'
+                 self.layer.textItem.size=7.8
+                 if len(self.contents)>12:
+                    self.contents_centered=False
+                    self.layer.textItem.justification=Justification.Left              
+        except Exception as e:
+         print(f"An error occurred: {e}")
+        #fonts replace end
         # Update TextItem contents
         self.TI.contents = self.input
 
@@ -551,7 +594,8 @@ class FormattedTextField (TextField):
         if self.rules_text and self.bold_rules_text:
             main_range.putInteger(idFrom, self.rules_start)
             main_range.putInteger(idTo, self.rules_end)
-            main_style.putString(fontPostScriptName, self.font_bold)
+            if check_contains_chinese(self.contents):main_style.putString(fontPostScriptName, 'DFKaiGB-W5')
+            else : main_style.putString(fontPostScriptName, self.font_bold)
             main_range.putObject(textStyle, textStyle, main_style)
             main_list.putObject(styleRange, main_range)
 
@@ -560,9 +604,11 @@ class FormattedTextField (TextField):
             for start, end in self.italics_indices:
                 main_range.putInteger(idFrom, start)
                 main_range.putInteger(idTo, end)
-                main_style.putString(fontPostScriptName, self.font_italic)
+                if check_contains_chinese(self.contents):main_style.putString(fontPostScriptName, 'DFKaiGB-W5')
+                else:main_style.putString(fontPostScriptName, self.font_italic)
                 main_range.putObject(textStyle, textStyle, main_style)
                 main_list.putObject(styleRange, main_range)
+                
 
         # Format each mana symbol
         if self.symbol_indices:

@@ -136,7 +136,7 @@ class ClassMod (NormalTemplate):
             FormattedTextField(
                 layer=self.text_layer_ability,
                 contents=self.layout.class_lines[0]['text']
-            ))
+            ))    
 
         # Add text fields for each line and class stage
         for i, line in enumerate(self.layout.class_lines[1:]):
@@ -154,7 +154,7 @@ class ClassMod (NormalTemplate):
             self.text.extend([
                 FormattedTextField(layer=line_layer, contents=line['text']),
                 FormattedTextField(layer=cost, contents=f"{line['cost']}:"),
-                TextField(layer=level, contents=f"Level {line['level']}")
+                TextField(layer=level, contents=f"等级 {line['level']}")
             ])
 
     """

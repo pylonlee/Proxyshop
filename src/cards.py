@@ -6,6 +6,7 @@
 from contextlib import suppress
 from pathlib import Path
 from typing import Optional, Union, TypedDict, Any
+import json
 
 # Third Party Imports
 import yarl
@@ -64,7 +65,6 @@ def get_card_data(card: CardDetails, cfg: AppConfig, logger: Optional[Any] = Non
     Returns:
         Scryfall 'Card' object data if card was returned, otherwise None.
     """
-
     # Format our query data
     name, code = card.get('name', ''), card.get('set', '')
     number = card.get('number', '').lstrip('0 ') if card.get('number') != '0' else '0'
@@ -92,15 +92,47 @@ def get_card_data(card: CardDetails, cfg: AppConfig, logger: Optional[Any] = Non
         if logger:
             logger.update(msg_warn(f'Reverting to English: [b]{name}[/b]'))
 
+    input_files = ["f:\output-blb.json", "f:\output-blc.json"]
+    cards = []
+    for file_name in input_files:
+        with open(file_name, 'r', encoding='utf-8') as file:
+            json_data = json.load(file)
+            cards.extend(json_data['cards'])
+
+    # 创建用于存储卡牌dict对象的字典
+    card_dicts = {}
+
+    # 将每张卡牌存储到单独的变量中
+    for i, card in enumerate(cards, start=1):
+        card_dicts[f'card{i}'] = card
+
     # Query the card in English, retry with extras if failed
     with suppress(Exception):
         data = action(*params, **kwargs)
+        for key, card_data in card_dicts.items():
+            if data['name'] == card_data['name']:
+            # 用找到的card_dict的值替换原来的card中的值
+                data['name'] = card_data['print name']
+                data['type_line'] = card_data['type']
+                data['lang'] = "CS"
+                data['oracle_text'] = card_data['text']
+                data['flavor_text'] = card_data['flavorText']
+                break  # 找到匹配项后退出循环
         return data
     if not number and not cfg.scry_extras:
         # Retry with extras included, case: Planar cards
         with suppress(Exception):
             kwargs['include_extras'] = 'True'
             data = action(*params, **kwargs)
+            for key, card_data in card_dicts.items():
+                if data['name'] == card_data['name']:
+            # 用找到的card_dict的值替换原来的card中的值
+                    data['name'] = card_data['print name']
+                    data['type_line'] = card_data['type']
+                    data['lang'] = "CS"
+                    data['oracle_text'] = card_data['text']
+                    data['flavor_text'] = card_data['flavorText']
+                break  # 找到匹配项后退出循环             
             return data
     return
 
@@ -193,7 +225,7 @@ def process_card_data(data: dict, card: CardDetails) -> dict:
         # Decide if this is a front face
         data['front'] = True if i == 0 else False
         # Transform / MDFC Planeswalker layout
-        if 'Planeswalker' in card.get('type_line', ''):
+        if 'Planeswalker' in data.get('type_line', '') or '鹏洛客' in data.get('type_line', ''):
             data['layout'] = 'planeswalker_tf' if data.get('layout') == 'transform' else 'planeswalker_mdfc'
         # Transform Saga layout
         if 'Saga' in card['type_line']:
@@ -209,7 +241,7 @@ def process_card_data(data: dict, card: CardDetails) -> dict:
         return data
 
     # Add Planeswalker layout
-    if 'Planeswalker' in data.get('type_line', ''):
+    if 'Planeswalker' in data.get('type_line', '') or '鹏洛客' in data.get('type_line', ''):
         data['layout'] = 'planeswalker'
         return data
 
@@ -337,8 +369,8 @@ def generate_italics(card_text: str) -> list[str]:
             break
 
         # Ignore nested parenthesis case, e.g. Alpha cards like "Rock Hydra"
-        if end_index != len(card_text) and card_text[end_index] != "\n":
-            continue
+        #if end_index != len(card_text) and card_text[end_index] != "\n":
+        #    continue
         italic_text.append(card_text[start_index:end_index])
 
     # Determine whether to look for ability words

@@ -10,7 +10,8 @@ import os
 from pathlib import Path
 from traceback import print_tb
 from types import ModuleType
-from typing import Optional, TypedDict, NotRequired, Any, Callable
+from typing import Optional, TypedDict, Any, Callable
+from typing_extensions import NotRequired
 
 # Third Party Imports
 import yarl

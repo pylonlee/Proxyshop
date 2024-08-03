@@ -16,8 +16,12 @@ class Reg:
     # Rules Text - Special Card Types
     LEVELER: re.Pattern = re.compile(r"(.*?)\nLEVEL (\d*-\d*)\n(\d*/\d*)\n(.*?)\nLEVEL (\d*\+)\n(\d*/\d*)\n(.*?)$")
     PROTOTYPE: re.Pattern = re.compile(r"Prototype (.+) [—\-] ([0-9]{0,2}/[0-9]{0,2}) \((.+)\)")
-    PLANESWALKER: re.Pattern = re.compile(r"(^[^:]*$|^.*:.*$)", re.MULTILINE)
+    import re
+
+    # 修改后的正则表达式模式，支持中英文冒号
+    PLANESWALKER: re.Pattern = re.compile(r"(^[^:：]*$|^.*[:：].*$)", re.MULTILINE)
     CLASS: re.Pattern = re.compile(r"(.+?): Level (\d)\n(.+)")
+    CLASS_CS: re.Pattern = re.compile(r"(.+?):等级(\d)\n(.+)")
 
     # Filename - Card Art
     PATH_ARTIST: re.Pattern = re.compile(r"\(+(.*?)\)")

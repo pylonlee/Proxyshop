@@ -1,0 +1,12 @@
+# All should be the "postScriptName" of the font
+# Usually is something like: NameNoSpace-Style
+font_rules_text: 'HBXiHeiTi'
+font_rules_text_bold: 'HBXiHeiTi'
+font_rules_text_italic: 'FZXKTK--GBK1-0'
+
+# This is used for name and type line
+# In the future these will be broken up: font_name, font_typeline
+font_title: 'DFPWeiBeiW7'
+
+# PT is broken up though
+font_pt: 'CardPTFont'{}

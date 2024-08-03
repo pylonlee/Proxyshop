@@ -227,6 +227,7 @@ class BaseTemplate:
         """Path: The formatted filename for the rendered image."""
         name, tag_map = CFG.output_file_name, {
             '#name': self.layout.name_raw,
+            '#original_name' : self.layout.input_name,
             '#artist': self.layout.artist,
             '#set': self.layout.set,
             '#num': str(self.layout.collector_number),
@@ -861,14 +862,15 @@ class BaseTemplate:
 
         # Fill in language if needed
         if self.layout.lang != "en":
-            psd.replace_text(bottom, "EN", self.layout.lang.upper())
+            #psd.replace_text(bottom, "EN", self.layout.lang.upper())
+            psd.replace_text(bottom, "EN", "自制中文版")
 
         # Fill optional collector star
         if self.is_collector_promo:
             psd.replace_text(bottom, "•", MagicIcons.COLLECTOR_STAR)
 
         # Apply the collector info
-        top.contents = self.layout.collector_data
+        top.contents = self.layout.collector_data + " 仅供测试套牌使用！"
         psd.replace_text(bottom, "SET", self.layout.set)
         psd.replace_text(bottom, "Artist", self.layout.artist)
 

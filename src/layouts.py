@@ -558,7 +558,7 @@ class NormalLayout:
     @auto_prop_cached
     def is_legendary(self) -> bool:
         """True if card is Legendary."""
-        return 'Legendary' in self.type_line_raw
+        return 'Legendary' in self.type_line_raw or '传奇' in self.type_line_raw
 
     @auto_prop_cached
     def is_colorless(self) -> bool:

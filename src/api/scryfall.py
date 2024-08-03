@@ -4,7 +4,8 @@
 # Standard Library Imports
 from pathlib import Path
 from shutil import copyfileobj
-from typing import Optional, Union, Callable, Any, TypedDict, Literal, NotRequired
+from typing import Optional, Union, Callable, Any, TypedDict, Literal
+from typing_extensions import NotRequired
 
 # Third Party Imports
 import requests
@@ -174,7 +175,7 @@ def get_card_unique(
     # Request the data
     res = requests.get(url=url, headers=scryfall_http_header)
     card = res.json()
-
+    print(card)
     # Ensure playable card was returned
     if card.get('object' == 'error'):
         raise get_error(error=card, response=res, **params)

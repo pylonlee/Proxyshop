@@ -287,7 +287,7 @@ def get_frame_details(card: dict) -> FrameDetails:
     Returns:
         Dict containing FrameDetails representing the card's frame makeup.
     """
-    if 'Land' in card.get('type_line', ''):
+    if 'Land' in card.get('type_line', '') or '地' in card.get('type_line', ''):
         return get_frame_details_land(card)
     return get_frame_details_nonland(card)
 
@@ -418,7 +418,7 @@ def get_frame_details_land(card: dict) -> FrameDetails:
                     return result
 
         # Count how many colors of mana the card can tap to add
-        if line.find('{T}') < line.find(':') and 'add ' in line.lower():
+        if (line.find('{T}') < line.find(':') and 'add ' in line.lower() ) or (line.find('{T}') < line.find('：') and '加' in line.lower()):
             # This line taps to add one or more colors, add those colors
             for color in [c for c in colors if f"{{{c}}}" in line and c not in colors_tapped]:
                 # Add this color to colors_tapped

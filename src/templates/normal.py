@@ -428,7 +428,6 @@ class ClassicTemplate(NormalTemplate):
 
     def collector_info(self) -> None:
         """Format and add the collector info at the bottom."""
-
         # Which collector info mode?
         if CFG.collector_mode in [
             CollectorMode.Default, CollectorMode.Modern

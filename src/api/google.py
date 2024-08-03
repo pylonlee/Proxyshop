@@ -6,7 +6,9 @@ from contextlib import suppress
 import json
 from pathlib import Path
 import textwrap
-from typing import Optional, Callable, TypedDict, NotRequired
+from typing import Optional, Callable, TypedDict
+from typing_extensions import NotRequired
+
 
 # Third Party Imports
 import requests

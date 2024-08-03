@@ -2,7 +2,8 @@
 * Helpers: Layer Effects
 """
 # Standard Library Imports
-from typing import Union, Optional, Literal, TypedDict, NotRequired
+from typing import Union, Optional, Literal, TypedDict
+from typing_extensions import NotRequired
 
 # Third Party Imports
 from photoshop.api import DialogModes, ActionDescriptor, ActionReference, ActionList, SolidColor
