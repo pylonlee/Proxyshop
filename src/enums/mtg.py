@@ -267,7 +267,7 @@ mana_symbol_map = {
     "{2/G}": "QqWV",
     "{S}": "omn",
     "{Q}": "ol",
-    "{P}": "x",
+    "{P}": "A",
     "{CHAOS}": "?"
 }
 
@@ -593,7 +593,7 @@ def get_symbol_colors(symbol: str, chars: str, color_map: SymbolColorMap) -> lis
         # Untap symbol
         return [color_map.primary, color_map.secondary]
     elif symbol == "{P}":
-        # Untap symbol
+        # Claw Symbol
         return [color_map.primary]
 
     # Normal mana symbol

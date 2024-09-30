@@ -212,7 +212,7 @@ class TextField:
          if check_contains_chinese(self.contents):                    
           match self.layer.name:
                case 'Card Name'|'Card Name Shift':
-                 self.layer.textItem.font='魏碑字体'
+                 self.layer.textItem.font='魏碑字体'                 
                  self.layer.textItem.size=10.5
                  self.layer.translate(0, 10)
                case 'Card Name - Adventure':
@@ -238,7 +238,7 @@ class TextField:
                case layername if 'Text' in layername: 
                  self.layer.textItem.font='FZZXHJW--GB1-0'
                  self.layer.textItem.size=7.8
-                 if len(self.contents)>12:
+                 if len(self.contents)>20:
                     self.contents_centered=False
                     self.layer.textItem.justification=Justification.Left              
         except Exception as e:

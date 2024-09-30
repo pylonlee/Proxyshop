@@ -880,7 +880,7 @@ class PlaneswalkerLayout(NormalLayout):
 
         # Process alternate language lines if needed
         if self.is_alt_lang and 'printed_text' in self.card:
-
+            #self.oracle_text = '+1：至多一个目标生物得-2/-0直到你的下一个回合。\n−3：本回合中，你可以从你坟墓场中施放目标瞬间或法术牌。如果该牌于本回合中将置入你的坟墓场，则改为将其放逐。\n−9：你获得具有「每当你施放咒语时，目标对手将其牌库顶的五张牌置入其坟墓场」的徽记。'
             # Separate alternate language lines
             alt_lines = self.oracle_text.split('\n')
             new_lines: list[str] = []

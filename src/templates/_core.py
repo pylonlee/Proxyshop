@@ -228,6 +228,7 @@ class BaseTemplate:
         name, tag_map = CFG.output_file_name, {
             '#name': self.layout.name_raw,
             '#original_name' : self.layout.input_name,
+            '#display_name' : self.layout.display_name,
             '#artist': self.layout.artist,
             '#set': self.layout.set,
             '#num': str(self.layout.collector_number),

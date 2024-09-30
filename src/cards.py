@@ -17,10 +17,17 @@ from src.api import scryfall
 from src.enums.mtg import TransformIcons, ColorObject, non_italics_abilities
 from src.utils.regex import Reg
 from src.utils.strings import normalize_str, msg_warn
+import re
 
 """
 * Types
 """
+def check_contains_chinese(check_str):
+     for ch in check_str:
+        if re.search(u'[\u4e00-\u9fff]', ch):
+            return True
+
+     return False
 
 # (Start index, end index)
 CardItalicString = tuple[int, int]
@@ -87,12 +94,20 @@ def get_card_data(card: CardDetails, cfg: AppConfig, logger: Optional[Any] = Non
         # Pull the alternate language card
         with suppress(Exception):
             data = action(*params, lang=cfg.lang, **kwargs)
-            return data
+            if check_contains_chinese(data['printed_name']):                
+                return data
+        with suppress(Exception):
+            data = action(*params, lang=cfg.lang, **kwargs)            
+            if 'card_faces' in data:
+                for i in range(0,2):
+                    if check_contains_chinese(data['card_faces'][i]['printed_name']):
+                        return data
         # Language couldn't be found
         if logger:
             logger.update(msg_warn(f'Reverting to English: [b]{name}[/b]'))
 
-    input_files = ["f:\output-blb.json", "f:\output-blc.json"]
+    #input_files = ["f:\output-blb.json", "f:\output-blc.json","f:\chsproject.json"]
+    input_files = ["f:\chsproject.json"]
     cards = []
     for file_name in input_files:
         with open(file_name, 'r', encoding='utf-8') as file:
@@ -112,12 +127,20 @@ def get_card_data(card: CardDetails, cfg: AppConfig, logger: Optional[Any] = Non
         for key, card_data in card_dicts.items():
             if data['name'] == card_data['name']:
             # 用找到的card_dict的值替换原来的card中的值
-                data['name'] = card_data['print name']
-                data['type_line'] = card_data['type']
+                data['printed_name'] = card_data['print name']
+                data['printed_type_line'] = card_data['type']
                 data['lang'] = "CS"
-                data['oracle_text'] = card_data['text']
-                data['flavor_text'] = card_data['flavorText']
+                data['printed_text'] = card_data['text']
+                #data['flavor_text'] = card_data['flavorText']
                 break  # 找到匹配项后退出循环
+            if 'card_faces' in data:
+                for i in range(0,2):
+                    if data['card_faces'][i]['name']==card_data['name']:
+                        data['card_faces'][i]['printed_name'] =card_data['print name']
+                        data['card_faces'][i]['printed_type_line'] = card_data['type']
+                        data['card_faces'][i]['printed_text'] = card_data['text']
+                        data['lang'] = "CS"   
+
         return data
     if not number and not cfg.scry_extras:
         # Retry with extras included, case: Planar cards
@@ -127,12 +150,11 @@ def get_card_data(card: CardDetails, cfg: AppConfig, logger: Optional[Any] = Non
             for key, card_data in card_dicts.items():
                 if data['name'] == card_data['name']:
             # 用找到的card_dict的值替换原来的card中的值
-                    data['name'] = card_data['print name']
-                    data['type_line'] = card_data['type']
+                    data['printed_name'] = card_data['print name']
+                    data['printed_type_line'] = card_data['type']
                     data['lang'] = "CS"
-                    data['oracle_text'] = card_data['text']
-                    data['flavor_text'] = card_data['flavorText']
-                break  # 找到匹配项后退出循环             
+                    data['printed_text'] = card_data['text']
+                    break  # 找到匹配项后退出循环             
             return data
     return
 
@@ -225,7 +247,7 @@ def process_card_data(data: dict, card: CardDetails) -> dict:
         # Decide if this is a front face
         data['front'] = True if i == 0 else False
         # Transform / MDFC Planeswalker layout
-        if 'Planeswalker' in data.get('type_line', '') or '鹏洛客' in data.get('type_line', ''):
+        if 'Planeswalker' in data.get('type_line', ''):
             data['layout'] = 'planeswalker_tf' if data.get('layout') == 'transform' else 'planeswalker_mdfc'
         # Transform Saga layout
         if 'Saga' in card['type_line']:
@@ -233,6 +255,10 @@ def process_card_data(data: dict, card: CardDetails) -> dict:
         # Battle layout
         if 'Battle' in card['type_line']:
             data['layout'] = 'battle'
+        if 'Creature' in card['type_line'] and data['layout'] == 'planeswalker_mdfc':
+            data['layout'] = 'modal_dfc'
+        if 'Creature' in card['type_line'] and data['layout'] == 'planeswalker_tf':
+            data['layout'] = 'transform'
         return data
 
     # Add Mutate layout
@@ -241,7 +267,7 @@ def process_card_data(data: dict, card: CardDetails) -> dict:
         return data
 
     # Add Planeswalker layout
-    if 'Planeswalker' in data.get('type_line', '') or '鹏洛客' in data.get('type_line', ''):
+    if 'Planeswalker' in data.get('type_line', ''):
         data['layout'] = 'planeswalker'
         return data
 
